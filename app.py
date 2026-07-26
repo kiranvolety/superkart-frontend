@@ -3,7 +3,7 @@ import requests
 import pandas as pd
 import os
 
-BACKEND_URL = os.getenv("BACKEND_URL", "http://localhost:7860")
+BACKEND_URL = os.getenv("BACKEND_URL", "https://superkart-backend-rg7l.onrender.com")
 
 st.set_page_config(page_title="SuperKart Sales Forecaster", layout="wide")
 st.title("SuperKart Sales Forecaster")
@@ -78,8 +78,8 @@ with tab2:
                 if "predictions" in result:
                     df["Predicted_Sales"] = result["predictions"]
                     st.write("Results:", df)
-                    csv = df.to_csv(index=False)
-                    st.download_button("Download Results", csv, "batch_predictions.csv", "text/csv")
+                    csv_data = df.to_csv(index=False)
+                    st.download_button("Download Results", csv_data, "batch_predictions.csv", "text/csv")
                 else:
                     st.error(f"Error: {result.get('error', 'Unknown error')}")
             except Exception as e:
